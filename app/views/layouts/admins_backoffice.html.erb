@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" data-bs-theme="dark">
   <head>
     <title><%= content_for(:title) || "Qero Viajar" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -23,10 +23,9 @@
   </head>
 
   <body>
-    <div>
-      <p>Deslogar Aqui</p>
+    <%= render "layouts/navbar" %>
+    <div  class="container-fluid p-4">
+      <%= yield %>
     </div>
-    <h1> Admins </h1>
-    <%= yield %>
   </body>
 </html>
