@@ -1,0 +1,29 @@
+<% if @admin.errors.any? %>
+  <div class="alert alert-danger d-flex align-items-center" role="alert">
+    <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+    <div>
+      <%= @admin.errors.full_messages.join(", ") %>
+    </div>
+  </div>
+<% end %>
+
+<%= form_with(model: [ :admins_backoffice, @admin ], local: true) do |form| %>
+  <div class="mb-3">
+    <%= form.label :email, "E-mail", class: "form-label", for: "formGroupExampleInput" %>
+    <%= form.text_field :email, class: "form-control", id: "formGroupExampleInput", placeholder: "E-mail" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :password, "Password", class: "form-label", for: "newPasswordInput" %>
+    <%= form.password_field :password, class: "form-control", id: "newPasswordInput", placeholder: "Password" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :password_confirmation, "Password Confirmation", class: "form-label", for: "confirmPasswordInput" %>
+    <%= form.password_field :password_confirmation, class: "form-control", id: "confirmPasswordInput", placeholder: "Password Confirmation" %>
+  </div>
+
+  <div class="col-12">
+    <%= form.submit "Create", class: "btn btn-primary" %>
+  </div>
+<% end %>
