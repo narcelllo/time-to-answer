@@ -1,8 +1,8 @@
 class AdminsBackoffice::AdminsController < AdminsBackofficeController
-  before_action :set_admin, only: [ :edit, :update ]
+  before_action :set_admin, only: [ :edit, :update, :destroy ]
   def index
     # @admins = Admin.pluck(:id, :email, :created_at)
-    @admins = Admin.all
+    @admins = Admin.all.page(params[:page]).per(5)
   end
   def new
     @admin = Admin.new
@@ -13,6 +13,14 @@ class AdminsBackoffice::AdminsController < AdminsBackofficeController
       redirect_to admins_backoffice_admins_path, notice: "Administrador criado com sucesso."
     else
       render :new
+    end
+  end
+  def destroy
+    @admin = Admin.find(params[:id])
+    if @admin.destroy
+      redirect_to admins_backoffice_admins_path, notice: "Administrador deletado com sucesso."
+    else
+      redirect_to admins_backoffice_admins_path, alert: "Não foi possível deletar o administrador."
     end
   end
   def edit

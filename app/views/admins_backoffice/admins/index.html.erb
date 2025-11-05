@@ -21,10 +21,17 @@
           <td><%= admin.created_at.strftime("%d/%m/%Y %H:%M") %></td>
           <td style=" width: 150px" >
               <%= link_to 'Edit', edit_admins_backoffice_admin_path(admin), class: "btn btn-info" %>
-            <button type="button" class="btn btn-danger">Delet</button>
-          </td>
+              <%= button_to 'Delete',
+                admins_backoffice_admin_path(admin),
+                method: :delete,
+                data: { confirm: "Tem certeza que deseja deletar este administrador?" },
+                class: "btn btn-danger",
+                form: { style: "display:inline" } %>
+            </td>
         </tr>
         <% end %>
       </tbody>
     </table>
+    <div class="d-flex justify-content-center">
+      <%= paginate @admins %>
   </div>
