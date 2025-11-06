@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     get "welcome/index"
     resources :admins
     resources :subjects
+    resources :questions
   end
   get "site/index"
   devise_for :users

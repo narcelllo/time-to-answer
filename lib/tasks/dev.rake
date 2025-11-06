@@ -11,6 +11,7 @@ namespace :dev do
       show_spinner("Cadastrando o administrador padrão...") { %x(rails dev:add_default_admin) }
       show_spinner("Cadastrando o usuário padrão...") { %x(rails dev:add_default_user) }
       show_spinner("Cadastrando assuntos padrão...") { %x(rails dev:add_subjects) }
+      show_spinner("Cadastrando questões padrão...") { %x(rails dev:add_question) }
 
     else
       puts "Você não está em ambiente de desenvolvimento!"
@@ -43,6 +44,13 @@ namespace :dev do
     File.open(file_path, "r").each do |line|
       Subject.create!(description: line.strip)
     end
+  end
+  desc "Adiciona questões padrão"
+  task add_question: :environment do
+    Question.create!(
+      description: "Initializing a list in Python",
+      subject: Subject.find_by(description: "Python")
+    )
   end
 
   private

@@ -1,0 +1,26 @@
+<% if @question.errors.any? %>
+  <div class="alert alert-danger d-flex align-items-center" role="alert">
+    <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+    <div>
+      <%= @question.errors.full_messages.join(", ") %>
+    </div>
+  </div>
+<% end %>
+
+<%= form_with(model: [ :admins_backoffice, @question ], local: true) do |form| %>
+  <div class="mb-3">
+    <%= form.label :description, "Description", class: "form-label", for: "formGroupExampleInput" %>
+    <%= form.text_area :description, class: "form-control", id: "formGroupExampleInput", placeholder: "Description", rows: 3 %>
+  </div>
+  
+  <div class="mb-3">
+    <%= form.label :subject_id, "Subject", class: "form-label" %>
+    <%= form.collection_select :subject_id, @subjects, :id, :description,
+        { prompt: "Selecione um assunto" },
+        { class: "form-select" } %>
+  </div>
+
+  <div class="col-12">
+    <%= form.submit "Create", class: "btn btn-primary" %>
+  </div>
+<% end %>

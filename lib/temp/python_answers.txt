@@ -1,0 +1,10 @@
+O que a função print() faz em Python?
+Qual símbolo é usado para comentários em Python?
+Qual é o tipo do valor 3.14 em Python?
+Como se cria uma lista em Python?
+Qual operador é usado para verificar igualdade?
+O que o código len("Python") retorna?
+Qual destas é uma estrutura de repetição?
+Como declarar uma função em Python?
+Qual destes é um tipo booleano?
+Qual é o resultado de 2 * 3 + 1?
