@@ -1,3 +1,5 @@
+require("jquery")
+require("@nathanvda/cocoon")
 import { Application } from "@hotwired/stimulus"
 
 const application = Application.start()

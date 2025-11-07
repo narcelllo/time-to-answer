@@ -1,12 +1,14 @@
 class AdminsBackoffice::QuestionsController < AdminsBackofficeController
   before_action :set_question, only: [ :edit, :update, :destroy ]
   before_action :set_subjects, only: [ :new, :edit, :create, :update ]
+  before_action :set_answers, only: [ :new, :edit, :create, :update ]
   def index
     # @question = Question.all.page(params[:page]).per(5)
-    @question = Question.includes(:subject).page(params[:page]).per(5)
+    @question = Question.includes(:subject, :answers).page(params[:page]).per(5)
   end
   def new
     @question = Question.new
+    4.times { @question.answers.build }
   end
   def create
     @question = Question.new(params_question)
@@ -25,6 +27,7 @@ class AdminsBackoffice::QuestionsController < AdminsBackofficeController
     end
   end
   def edit
+    4.times { @question.answers.build }
   end
   def update
     if @question.update(params_question)
@@ -40,10 +43,14 @@ class AdminsBackoffice::QuestionsController < AdminsBackofficeController
   end
 
   def params_question
-    params.require(:question).permit(:description, :subject_id)
+    params.require(:question).permit(:description, :subject_id, answers_attributes: [ :id, :description, :correct, :_destroy ])
   end
 
   def set_subjects
     @subjects = Subject.all
+  end
+
+  def set_answers
+    @answers = Answer.all
   end
 end

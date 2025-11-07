@@ -2,27 +2,46 @@
   <div class="alert alert-danger d-flex align-items-center" role="alert">
     <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
     <div>
-      <%= @question.errors.full_messages.join(", ") %>
+      <%= @question.errors.full_messages.join(", ") %> 
     </div>
   </div>
 <% end %>
 
 <%= form_with(model: [ :admins_backoffice, @question ], local: true) do |form| %>
   <div class="mb-3">
-    <%= form.label :description, "Question", class: "form-label", for: "formGroupExampleInput" %>
-    <%= form.text_area :description, class: "form-control", id: "formGroupExampleInput", placeholder: "Question", rows: 3 %>
+    <%= form.label :description, "Description", class: "form-label", for: "formGroupExampleInput" %>
+    <%= form.text_area :description, class: "form-control", id: "formGroupExampleInput", placeholder: "Description", rows: 3 %>
   </div>
-
+  
   <div class="mb-3">
     <%= form.label :subject_id, "Subject", class: "form-label" %>
     <%= form.collection_select :subject_id, @subjects, :id, :description,
         { prompt: "Selecione um assunto" },
         { class: "form-select" } %>
   </div>
-  
+
+  <%= form.fields_for :answers do |answer_form| %>
+    <div class="card p-3 mb-3">
+      <div class="mb-3">
+        <%= answer_form.label :description, "Resposta", class: "form-label" %>
+        <%= answer_form.text_field :description, class: "form-control" %>
+      </div>
+
+      <div class="form-check">
+        <%= answer_form.check_box :correct, class: "form-check-input" %>
+        <%= answer_form.label :correct, "Resposta correta", class: "form-check-label" %>
+      </div>
+
+      <% if answer_form.object.persisted? %>
+        <div class="form-check mt-2">
+          <%= answer_form.check_box :_destroy, class: "form-check-input" %>
+          <%= answer_form.label :_destroy, "Remover resposta", class: "form-check-label text-danger" %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
   <div class="col-12">
-    <%= form.submit "Edit", class: "btn btn-primary" %>
+    <%= form.submit "Create", class: "btn btn-primary" %>
   </div>
 <% end %>
-
-<%#= render partial: 'admins_backoffice/admins/shared/form' %>

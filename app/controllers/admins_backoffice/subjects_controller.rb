@@ -1,7 +1,6 @@
 class AdminsBackoffice::SubjectsController < AdminsBackofficeController
   before_action :set_subject, only: [ :edit, :update, :destroy ]
   def index
-    # @subjects = Subject.pluck(:id, :email, :created_at)
     @subjects = Subject.all.page(params[:page]).per(5)
   end
   def new
