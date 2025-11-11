@@ -1,40 +1,48 @@
   <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <%= link_to 'Home', root_path, class: 'navbar-brand' %>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <%= link_to 'Users', users_backoffice_welcome_index_path, class: "nav-link active", aria: { current: "page" } %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Admins', admins_backoffice_admins_path, class: "nav-link active", aria: { current: "page" } %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Subjects', admins_backoffice_subjects_path, class: "nav-link active", aria: { current: "page" } %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Questions', admins_backoffice_questions_path, class: "nav-link active", aria: { current: "page" } %>
-        </li>
-      </ul>
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item ">
-          <% if admin_signed_in? %>
-            <% logout_path = destroy_admin_session_path %>
-          <% elsif user_signed_in? %>
-            <% logout_path = destroy_user_session_path %>
-          <% end %>
+      <div class="container-fluid">
+        <%= link_to 'Home', root_path, class: 'navbar-brand' %>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <%= link_to 'Admins', admins_backoffice_force_admin_login_path, class: "nav-link active", aria: { current: "page" } %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Subjects', admins_backoffice_subjects_path, class: "nav-link active", aria: { current: "page" } %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Questions', admins_backoffice_questions_path, class: "nav-link active", aria: { current: "page" } %>
+            </li>
+          </ul>
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item ">
+              <% if user_signed_in? %>
+                <%= link_to current_user.email, users_backoffice_welcome_index_path, class: "nav-link active", aria: { current: "page" } %>
+              <% elsif admin_signed_in? %>
+                <%= link_to current_admin.email, admins_backoffice_welcome_index_path, class: "nav-link active", aria: { current: "page" } %>
+              <% end %>
+              <% if !user_signed_in? && !admin_signed_in? %>
+                <%= link_to 'Login', new_user_session_path, class: "nav-link active ", aria: { current: "page" } %>
+              <% end %>
+            </li>
 
-          <%= button_to 'Logoff', logout_path, method: :delete, class: "nav-link active ", 
-          aria: { current: "page" } %>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+            <li class="nav-item ">
+              <% if admin_signed_in? %>
+                <% logout_path = destroy_admin_session_path %>
+              <% elsif user_signed_in? %>
+                <% logout_path = destroy_user_session_path %>
+              <% end %>
+              
+              <%= button_to 'Logoff', logout_path, method: :delete, class: "nav-link active ", aria: { current: "page" } %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   </body>
   <div class="container mt-5">
 </html>
