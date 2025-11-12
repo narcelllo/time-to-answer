@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     get "welcome/index"
   end
   namespace :admins_backoffice do
-    get "force_admin_login", to: "force_admin_login"
+    get "force_admin_login"
     get "welcome/index"
     resources :admins
     resources :subjects
