@@ -1,0 +1,13 @@
+<turbo-stream action="replace" target="result_<%= @answer.question_id %>">
+  <template>
+    <% if @answer.correct? %>
+      <div id="result_<%= @answer.question_id %>" class="alert alert-success mt-3">
+        ✅ <%= @answer.description %> está correta!
+      </div>
+    <% else %>
+      <div id="result_<%= @answer.question_id %>" class="alert alert-danger mt-3">
+        ❌ <%= @answer.description %> está incorreta!
+      </div>
+    <% end %>
+  </template>
+</turbo-stream>

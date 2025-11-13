@@ -27,6 +27,17 @@
 
   <body>
     <%= render "layouts/navbar" %>
+    <div class="p-5 mb-4 bg-body-tertiary rounded-3"> 
+      <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">Questions Site</h1>
+        <p class="col-md-8 fs-5">
+        <%= form_with(url: site_search_index_path, method: :get, local: true, class: "d-flex", role: "search") do |form| %>
+            <%= form.text_field :query, class: "form-control me-2", placeholder: "Search", aria: { label: "Search" } %>
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        <% end %>
+        </p>
+      </div>
+    </div>
     <%= yield %>
   </body>
 </html>

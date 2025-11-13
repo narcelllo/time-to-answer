@@ -27,7 +27,6 @@ class AdminsBackoffice::QuestionsController < AdminsBackofficeController
     end
   end
   def edit
-    4.times { @question.answers.build }
   end
   def update
     if @question.update(params_question)

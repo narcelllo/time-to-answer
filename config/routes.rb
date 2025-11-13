@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   namespace :site do
     get "welcome/index"
+    resources :search, only: [ :index ]
+    post "answer", to: "answer#answer_correction", as: "answer"
   end
   namespace :users_backoffice do
     get "welcome/index"
