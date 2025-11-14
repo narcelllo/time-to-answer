@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   end
   namespace :users_backoffice do
     get "welcome/index"
+    get "profile", to: "profile#edit"
   end
   namespace :admins_backoffice do
     get "force_admin_login"
@@ -16,7 +17,7 @@ Rails.application.routes.draw do
   end
   get "site/index"
   devise_for :users
-  devise_for :admins
+  devise_for :admins, skip: [ :registrations ]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root to: "site/welcome#index"
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
