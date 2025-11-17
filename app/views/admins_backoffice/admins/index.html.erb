@@ -1,37 +1,40 @@
-  <h1>Admins</h1>
-  <p>Find me in app/views/admins_backoffice/admins/index.html.erb</p>
-
-  <div>
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th scope="col">Id</th>
-          <th scope="col">Email</th>
-          <th scope="col">created at</th>
-          <th scope="col">
-            <%= link_to 'Create Admin', new_admins_backoffice_admin_path, class: "btn btn-info" %>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @admins.each do |admin|%>
-        <tr>
-          <td><%= admin.id %></td>
-          <td><%= admin.email %></td>
-          <td><%= admin.created_at.strftime("%d/%m/%Y %H:%M") %></td>
-          <td style=" width: 150px" >
-              <%= link_to 'Edit', edit_admins_backoffice_admin_path(admin), class: "btn btn-info" %>
-              <%= button_to 'Delete',
-                admins_backoffice_admin_path(admin),
-                method: :delete,
-                data: { confirm: "Tem certeza que deseja deletar este administrador?" },
-                class: "btn btn-danger",
-                form: { style: "display:inline" } %>
-            </td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <div class="d-flex justify-content-center">
-      <%= paginate @admins %>
+<h1>Admins</h1>
+<div class="p-4 mb-3 bg-body-tertiary rounded-3"> 
+    <div class="container-fluid py-4 ">
+      <div>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Email</th>
+              <th scope="col">created at</th>
+              <th scope="col">
+                <%= link_to 'Create Admin', new_admins_backoffice_admin_path, class: "btn btn-info" %>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @admins.each do |admin|%>
+            <tr>
+              <td><%= admin.id %></td>
+              <td><%= admin.email %></td>
+              <td><%= admin.created_at.strftime("%d/%m/%Y %H:%M") %></td>
+              <td style=" width: 150px" >
+                  <%= link_to 'Edit', edit_admins_backoffice_admin_path(admin), class: "btn btn-info" %>
+                  <%= button_to 'Delete',
+                    admins_backoffice_admin_path(admin),
+                    method: :delete,
+                    data: { confirm: "Tem certeza que deseja deletar este administrador?" },
+                    class: "btn btn-danger",
+                    form: { style: "display:inline" } %>
+                </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <div class="d-flex justify-content-center">
+          <%= paginate @admins %>
+      </div>
+    </div>
   </div>
+</div>

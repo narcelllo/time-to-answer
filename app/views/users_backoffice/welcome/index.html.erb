@@ -4,7 +4,7 @@
             <div class="card" style="width: 18rem;">
                 <%= image_tag "user_img.png", class: "card-img-top", alt: "User image" %>
                 <div class="card-body">
-                    <h5 class="card-title"><%= @user.full_name %></h5>
+                    <h5 class="card-title"><%= current_user.full_name %></h5>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
                     <div class="d-grid gap-2">
                         <%= link_to 'Edit profile', users_backoffice_profile_path, class: "btn btn-primary" %>

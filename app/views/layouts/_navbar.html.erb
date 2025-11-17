@@ -23,7 +23,7 @@
               <% if user_signed_in? %>
                 <%= link_to current_user.email, users_backoffice_welcome_index_path, class: "nav-link active", aria: { current: "page" } %>
               <% elsif admin_signed_in? %>
-                <%= link_to current_admin.email, admins_backoffice_welcome_index_path, class: "nav-link active", aria: { current: "page" } %>
+                <%= link_to current_admin.email, admins_backoffice_admins_path, class: "nav-link active", aria: { current: "page" } %>
               <% end %>
               <% if !user_signed_in? && !admin_signed_in? %>
                 <%= link_to 'Login', new_user_session_path, class: "nav-link active ", aria: { current: "page" } %>
