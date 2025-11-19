@@ -19,6 +19,9 @@
             </li>
           </ul>
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li>
+              <%= image_tag(profile_img, class: "rounded-circle", height:"32") %>
+            </li>
             <li class="nav-item ">
               <% if user_signed_in? %>
                 <%= link_to current_user.email, users_backoffice_welcome_index_path, class: "nav-link active", aria: { current: "page" } %>
@@ -29,7 +32,6 @@
                 <%= link_to 'Login', new_user_session_path, class: "nav-link active ", aria: { current: "page" } %>
               <% end %>
             </li>
-
             <li class="nav-item ">
               <% if admin_signed_in? %>
                 <% logout_path = destroy_admin_session_path %>

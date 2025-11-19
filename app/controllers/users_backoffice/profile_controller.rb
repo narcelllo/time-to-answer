@@ -2,10 +2,16 @@ class UsersBackoffice::ProfileController < UsersBackofficeController
   before_action :set_user
   def edit
   end
-
+  def update_profile_img
+    if @user.update(params_profile_img)
+      redirect_to users_backoffice_profile_path, notice: "Imagem atualizados!"
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
   def update_email
     if @user.update(params_email)
-      redirect_to users_backoffice_welcome_index_path, notice: "E-mail atualizado!"
+      redirect_to users_backoffice_profile_path, notice: "E-mail atualizado!"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -13,7 +19,7 @@ class UsersBackoffice::ProfileController < UsersBackofficeController
 
   def update_name
     if @user.update(params_info)
-      redirect_to users_backoffice_welcome_index_path, notice: "Dados atualizados!"
+      redirect_to users_backoffice_profile_path, notice: "Dados atualizados!"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -26,13 +32,16 @@ class UsersBackoffice::ProfileController < UsersBackofficeController
     end
 
     if @user.update(params_password.except(:current_password))
-      redirect_to users_backoffice_welcome_index_path, notice: "Senha atualizada!"
+      redirect_to users_backoffice_profile_path, notice: "Senha atualizada!"
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   private
+  def params_profile_img
+    params.require(:user).permit(:profile_img)
+  end
 
   def params_email
     params.require(:user).permit(:email)

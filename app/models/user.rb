@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_one_attached :profile_img
   validates :first_name, :last_name, presence: true
   def full_name
     [ self.first_name, self.last_name ].join(" ")

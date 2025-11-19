@@ -1,5 +1,17 @@
 <div class="p-4 mb-3 bg-body-tertiary rounded-3"> 
     <div class="container-fluid py-4 ">
+         <%= form_with url: update_profile_img_users_backoffice_profile_path, model: @user, local: true do |form| %>
+            <div class="mb-3">
+                <%= image_tag(profile_img, class: "rounded mx-auto d-block", width:"200") %>
+                <%= form.label :profile_img, "Edit image", class: "form-label", for: "CurrentImg" %>
+                <%= form.file_field :profile_img, class: "form-control", id: "CurrentImg", placeholder: "Edit image" %>
+            </div>
+            <%= form.submit "Submit", class:"btn btn-primary"%>
+        <%end%>
+    </div>
+</div>
+<div class="p-4 mb-3 bg-body-tertiary rounded-3"> 
+    <div class="container-fluid py-4 ">
         <%= form_with url: update_email_users_backoffice_profile_path, model: @user, local: true do |form| %>
             <div class="mb-3">
                 <%= form.label :email, "E-mail", class: "form-label", for: "formGroupEmailInput" %>
